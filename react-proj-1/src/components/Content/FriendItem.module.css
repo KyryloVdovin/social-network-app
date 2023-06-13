@@ -1,0 +1,15 @@
+.item{
+    
+}
+.item img{
+    height: 40px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.friendName{
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: center;
+}

@@ -1,0 +1,21 @@
+.nav{
+    grid-area: n;
+    background-color: #c5a039;
+    padding: 20px;
+  }
+  .item a{
+    color: white;
+    text-decoration: none;
+  }
+
+  .item a.active{
+    color: red;
+  }
+  .friendsContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .frendsTitle{
+    margin-top: 50px;
+  }
