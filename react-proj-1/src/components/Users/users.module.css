@@ -5,7 +5,18 @@
 .selectedPage{
     font-weight: bold;
     font-size: 20px;
+    background-color: rgb(136, 60, 60);
 }
 .otherPages{
     padding-right: 10px;
+}
+
+.pageNumber{
+    background-color: aliceblue;
+    margin-right: 10px;
+    padding: 0 5px;
+}
+.centerHor{
+    margin: 0 auto;
+    width: 50%;
 }

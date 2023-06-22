@@ -5,7 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 // import DialogContainer from './components/Dialogs/DialogsContainer';
 // import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Login/login';
-import { BrowserRouter, HashRouter, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter, HashRouter, Navigate, Route, Routes, useParams } from "react-router-dom";
 import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -48,15 +48,19 @@ class App extends Component {
       <HashRouter>
         <div className="app-wrapper">
           <HeaderContainer />
-          <Navbar store={this.props.state.getState()} />
+          <Navbar />
           <div className='app-wrapper-content'>
             <Suspense fallback={<Preloader />}>
               <Routes>
+                {/* <Route exact path='/' element={<ContentContainer />} /> */}
+                <Route exact path='/' element={<Navigate to="/profile" />} />
                 <Route path="/Dialogs" element={<DialogContainer />} />
                 <Route path='/profile/:userId' element={<ContentContainer />} />
                 <Route path='/profile/' element={<ContentContainer />} />
                 <Route path="/users" element={<UsersContainer />} />
+                <Route path="/login/facebook" element={<div>Facebook</div>} />
                 <Route path="/login" element={<Login />} />
+                <Route path="*" element={<div>404 NOT FOUND</div>} />
               </Routes>
             </Suspense>
 

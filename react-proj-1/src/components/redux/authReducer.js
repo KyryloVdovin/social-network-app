@@ -1,13 +1,15 @@
 import { stopSubmit } from "redux-form";
-import { authAPI } from "../../api/api";
+import { authAPI, sequrityAPI } from "../../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
+const GET_CAPTCHA_URL_SUCCESS = 'GET_CAPTCHA_URL_SUCCESS';
 
 let initialState = {
     userId: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    captchaUrl: null
 }
 
 const authReducer = (state = initialState, action) => {
@@ -16,6 +18,11 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.authData,
+            }
+        case GET_CAPTCHA_URL_SUCCESS:
+            return {
+                ...state,
+                captchaUrl: action.captchaUrl,
             }
         default:
             return state;
@@ -30,6 +37,12 @@ export const setAuthUserData = (userId, email, login, isAuth) => {
             login,
             isAuth
         }
+    }
+};
+export const getCaptchaUrlSuccess = (captchaUrl) => {
+    return {
+        type: GET_CAPTCHA_URL_SUCCESS,
+        captchaUrl
     }
 };
 
@@ -75,15 +88,18 @@ export const authThunkCreator = () => async (dispatch) => {
         dispatch(setAuthUserData(id, email, login, true));
     }
 }
-export const login = (email, password, rememberMe) => async (dispatch) => {
-    let response = await authAPI.login(email, password, rememberMe);
+export const login = (email, password, rememberMe, captchaUrl) => async (dispatch) => {
+    let response = await authAPI.login(email, password, rememberMe, captchaUrl);
 
     if (response.data.resultCode === 0) {
         dispatch(authThunkCreator());
     }
     else {
-        let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+        if (response.data.resultCode === 10) {
+            dispatch(getCaptchaUrl());
+        }
 
+        let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
         dispatch(stopSubmit("login", { _error: message }));
     }
 }
@@ -92,6 +108,13 @@ export const logout = () => (dispatch) => {
         if (response.data.resultCode === 0) {
             dispatch(setAuthUserData(null, null, null, false));
         }
+    });
+}
+export const getCaptchaUrl = () => (dispatch) => {
+    sequrityAPI.getCaptchaURL().then(response => {
+        const captchaUrl = response.data.url;
+
+        dispatch(getCaptchaUrlSuccess(captchaUrl));
     });
 }
 

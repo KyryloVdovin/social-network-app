@@ -24,13 +24,6 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: updateObjectInArray(state.users, action.userID, "id", { followed: true })
-                // users: state.users.map(user => {
-                //     if (user.id === action.userID) {
-                //         return { ...user, followed: true }
-                //     }
-
-                //     return user;
-                // })
             }
         case UNFOLLOW:
             return {

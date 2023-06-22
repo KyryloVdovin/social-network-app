@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { profileAPI } from "../../api/api";
 
 const ADD_POST = 'ADD_POST';
@@ -5,6 +6,7 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const UPDATE_STATUS = 'UPDATE_STATUS';
+const SAVED_PHOTO_SUCCESS = 'SAVED_PHOTO_SUCCESS';
 
 let initialState = {
     posts: [
@@ -30,12 +32,6 @@ const profileReducer = (state = initialState, action) => {
                 newPostText: ''
             };
         }
-        // case UPDATE_NEW_POST_TEXT: {
-        //     return {
-        //         ...state,
-        //         newPostText: action.newText
-        //     };
-        // }
         case SET_USER_PROFILE: {
             return {
                 ...state,
@@ -54,6 +50,12 @@ const profileReducer = (state = initialState, action) => {
                 status: action.status
             };
         }
+        case SAVED_PHOTO_SUCCESS: {
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
+            };
+        }
         default:
             return state;
     }
@@ -65,12 +67,6 @@ export const addPostActionCreator = (newPostText) => {
     }
 };
 
-// export const updateNewPostTextActionCreator = (text) => {
-//     return {
-//         type: UPDATE_NEW_POST_TEXT,
-//         newText: text
-//     };
-// };
 export const setUserPofileAC = (profile) => {
     return {
         type: SET_USER_PROFILE,
@@ -87,6 +83,12 @@ export const updateStatusAC = (status) => {
     return {
         type: UPDATE_STATUS,
         status
+    };
+};
+export const savePhotosSuccess = (photos) => {
+    return {
+        type: SAVED_PHOTO_SUCCESS,
+        photos
     };
 };
 
@@ -109,6 +111,30 @@ export const updateStatusThunk = (status) => {
         profileAPI.updateStatus(status).then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(updateStatusAC(response.data));
+            }
+        });
+    }
+}
+export const setPhoto = (photoFile) => {
+    return (dispatch) => {
+        profileAPI.savePhoto(photoFile).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(savePhotosSuccess(response.data.data.photos));
+            }
+        });
+    }
+}
+export const saveProfile = (profile) => {
+    return (dispatch, getState) => {
+        const userId = getState().auth.userId;
+
+        profileAPI.saveProfile(profile).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(userProfileThunk(userId));
+            }
+            else{
+                // dispatch(stopSubmit("editProfile", {"contacts": {"facebook": response.data.messages[0]}}));
+                dispatch(stopSubmit("editProfile", {_error: response.data.messages[0]}));
             }
         });
     }
