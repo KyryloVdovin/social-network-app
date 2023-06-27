@@ -24,7 +24,7 @@ const ContentStatusWithHooks = (props) => {
     }
     
     return (
-        <>
+        <div className={s.status}>
             {!editMode &&
                 <div>
                     <span onDoubleClick={activeteEditMode}>{props.status || "------"}</span>
@@ -35,7 +35,7 @@ const ContentStatusWithHooks = (props) => {
                     <input onChange={onStatusChange} autoFocus={true} onBlur={deactiveteEditMode} value={status} />
                 </div>
             }
-        </>
+        </div>
     )
 }
 

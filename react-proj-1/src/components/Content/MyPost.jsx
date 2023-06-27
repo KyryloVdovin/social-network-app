@@ -1,8 +1,9 @@
 import React from 'react';
 import Post from './Posts/Post';
-import { Field, reduxForm } from "redux-form"
+import { Field, reduxForm } from "redux-form";
 import { requiredField, maxLengthCreator } from '../../utils/validators/validators';
 import { Textarea } from '../common/FormControls/FormControls';
+import s from './MyPost.module.css';
 
 const maxLength20 = maxLengthCreator(20);
 
@@ -42,8 +43,8 @@ const MyPost = React.memo(props => {
     };
 
     return (
-        <div>
-            my post
+        <div className={s.postContainer}>
+            <div className={s.postHeaderTitle}>My post</div>
             <AddNewPostReduxForm onSubmit={addNewPost} />
             <div className='posts'>
                 {postMessage}

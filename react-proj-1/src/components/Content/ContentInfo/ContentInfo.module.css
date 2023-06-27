@@ -1,7 +1,68 @@
-.item{
+.item {
     color: white;
 }
 
-.photo{
+.photo {
     width: 240px;
+}
+
+.profileDataPhoto {
+    display: flex;
+    gap: 20px;
+
+    margin-top: 20px;
+}
+
+.profilePhotoContainer {
+    background-color: #333;
+    padding: 20px;
+}
+
+.profileDataContainer {
+    background-color: #333;
+    width: 100%;
+    min-width: 300px;
+    padding: 20px;
+}
+
+.status {
+    color: #d9dad1;
+    border-bottom: 2px solid #666;
+    padding-bottom: 10px;
+    /* #666 */
+}
+
+.profileData {
+    color: #6f6d70;
+    padding-top: 10px;
+}
+
+.fieldDataColor {
+    color: #d9dad1;
+}
+
+.fieldDataSize {
+    display: inline-block;
+    min-width: 180px;
+    margin-right: 70px;
+}
+
+.editBtn {
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.profileData div{
+    margin-bottom: 5px;
+}
+.contacts{
+    color: #d9dad1;
+    display: block;
+    margin-bottom: 5px;
+}
+.profilePhotoContainer img{
+    margin-bottom: 10px;
 }

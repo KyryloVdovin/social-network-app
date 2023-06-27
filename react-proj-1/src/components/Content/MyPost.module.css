@@ -4,3 +4,16 @@
 .item img{
     width: 50px;
 }
+.postContainer{
+    margin-top: 20px;
+    background-color: #333;
+}
+.postHeaderTitle{
+    background-color: #565656;
+    height: 40px;
+    padding: 10px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 40px;
+    color: #d9dad1;
+}

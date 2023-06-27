@@ -6,41 +6,36 @@ import ProfileDataForm from './ProfileDataForm';
 import { reduxForm } from "redux-form";
 
 const Contacts = ({ contactTitle, contactValue }) => {
+    const empty = '-------------------------';
     return (
         <div>
-            <b>{contactTitle}:</b> {contactValue}
+            <b className={s.fieldDataSize}>{contactTitle}:</b>
+            <span className={s.fieldDataColor}>{contactValue === null ? empty : contactValue}</span>
         </div>
     )
 }
 const ProfileData = ({ profile, isOwner, goToEditMode }) => {
-    {
-        Object.keys(profile.contacts).map(key => {
-            console.log("key = " + key);
-            console.log("profile.contacts[key] = " + profile.contacts[key]);
-        })
-    }
-
     return (
-        <div>
-            {isOwner && <div><button onClick={goToEditMode}>Edit</button></div>}
-            <div><b>NAME:</b> <span>{profile.fullName}</span></div>
+        <div className={s.profileData}>
+            <div><b className={s.fieldDataSize}>NAME:</b> <span className={s.fieldDataColor}>{profile.fullName}</span></div>
 
             <div>
-                <b>Looking for a job:</b> {profile.lookingForAJob ? "yes" : "no"}
+                <b className={s.fieldDataSize}>Looking for a job:</b> <span className={s.fieldDataColor}>{profile.lookingForAJob ? "yes" : "no"}</span>
             </div>
             {profile.lookingForAJob &&
                 <div>
-                    <b>My professional skills:</b> {profile.lookingForAJobDescription}
+                    <b className={s.fieldDataSize}>My professional skills:</b> <span className={s.fieldDataColor}>{profile.lookingForAJobDescription}</span>
                 </div>
             }
             <div>
-                <b>About me:</b> {profile.aboutMe}
+                <b className={s.fieldDataSize}>About me:</b> <span className={s.fieldDataColor}>{profile.aboutMe}</span>
             </div>
             <div>
-                <b>Contacts:</b> {Object.keys(profile.contacts).map(key => {
+                <b className={s.contacts}>Contacts:</b> {Object.keys(profile.contacts).map(key => {
                     return <Contacts key={key} contactTitle={key} contactValue={profile.contacts[key]} />
                 })}
             </div>
+            {isOwner && <div><button className={s.editBtn} onClick={goToEditMode}>Edit</button></div>}
         </div>
     )
 }
@@ -71,13 +66,18 @@ const ContentInfo = React.memo(props => {
 
     return (
         <div>
-            <div>
-                <img className={s.photo} src={props.profile.photos?.large || photo} />
-                {props.isOwner && <input type='file' onChange={onMainPhotoSelected}></input>}
-                <ContentStatusWithHooks status={props.status} updateStatusThunk={props.updateStatusThunk} />
-                {editMode ? <ProfileDataReduxForm onSubmit={onSubmit} profile={props.profile} isOwner={props.isOwner} />
-                    : <ProfileData profile={props.profile} isOwner={props.isOwner} goToEditMode={() => { setEditMode(true) }} />}
-
+            <div className={s.profileDataPhoto}>
+                <div className={s.profilePhotoContainer}>
+                    <img className={s.photo} src={props.profile.photos?.large || photo} />
+                    <div>
+                        {props.isOwner && <input type='file' onChange={onMainPhotoSelected}></input>}
+                    </div>
+                </div>
+                <div className={s.profileDataContainer}>
+                    <ContentStatusWithHooks status={props.status} updateStatusThunk={props.updateStatusThunk} />
+                    {editMode ? <ProfileDataReduxForm onSubmit={onSubmit} profile={props.profile} isOwner={props.isOwner} />
+                        : <ProfileData profile={props.profile} isOwner={props.isOwner} goToEditMode={() => { setEditMode(true) }} />}
+                </div>
             </div>
         </div>
     );
