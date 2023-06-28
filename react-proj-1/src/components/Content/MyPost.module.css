@@ -6,7 +6,7 @@
 }
 .postContainer{
     margin-top: 20px;
-    background-color: #333;
+    background-color: #333335;
 }
 .postHeaderTitle{
     background-color: #565656;
@@ -16,4 +16,10 @@
     font-size: 20px;
     line-height: 40px;
     color: #d9dad1;
+}
+.newPostForm{
+
+}
+.postsWrapper{
+    padding: 20px;
 }

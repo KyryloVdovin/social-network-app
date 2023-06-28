@@ -1,0 +1,88 @@
+.centerHor {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.pagination {
+    list-style: none;
+    display: block;
+    padding: 0;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination li {
+    display: inline-block;
+    text-align: center;
+}
+
+.pagination a {
+    float: left;
+    display: block;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 12px;
+    color: #fff;
+    margin-left: -1px;
+    border: 1px solid transparent;
+    line-height: 1.5;
+}
+
+.pagination a.active {
+    cursor: default;
+}
+
+.pagination a:active {
+    outline: none;
+}
+
+.paginationModal a {
+    margin: 0 5px;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+    background-color: #F7C12C;
+    color: rgb(61, 61, 61);
+    font-weight: 500;
+}
+
+.paginationModal a.prev {
+    -moz-border-radius: 50px 0 0 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px 0 0 50px;
+    width: 100px;
+}
+
+.paginationModal a.disabled {
+    background-color: #ac9043;
+}
+
+.paginationModal a.disabled:hover {
+    background-color: #ac9043;
+}
+
+.paginationModal a.next {
+    -moz-border-radius: 0 50px 50px 0;
+    -webkit-border-radius: 0;
+    border-radius: 0 50px 50px 0;
+    width: 100px;
+}
+
+.paginationModal a:hover {
+    background-color: #FFA500;
+}
+
+.paginationModal a.active,
+.paginationModal a:active {
+    background-color: #FFA100;
+}
+
+.selectedPage a {
+    background-color: #FFA100;
+    border-radius: 100%;
+}

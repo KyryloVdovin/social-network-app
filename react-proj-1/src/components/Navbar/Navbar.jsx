@@ -24,7 +24,7 @@ class Navbar extends React.Component {
                     <NavLink to='/Dialogs' className={navData => navData.isActive ? classes.active : classes.item}>Messages</NavLink>
                 </div>
                 <div className={classes.item}>
-                    <NavLink to='/users'>Users</NavLink>
+                    <NavLink to='/users' className={navData => navData.isActive ? classes.active : classes.item}>Users</NavLink>
                 </div>
                 <div className={classes.item}>
                     <NavLink to='#f'>News</NavLink>
@@ -36,7 +36,7 @@ class Navbar extends React.Component {
                     <NavLink to='#f'>Settings</NavLink>
                 </div>
 
-                <div className='frends-content'>
+                <div className={classes.frendsContent}>
                     <h2 className={classes.frendsTitle}>Friends</h2>
                     <div className={classes.friendsContainer}>
                         {friendsItems}

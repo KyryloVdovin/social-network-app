@@ -1,5 +1,5 @@
 import { usersAPI } from "../../api/api";
-import {updateObjectInArray} from "../../utils/objects-helper";
+import { updateObjectInArray } from "../../utils/objects-helper";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -13,7 +13,7 @@ let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 35,
+    currentPage: 1,
     isFetching: false,
     isFollowingInProgress: [],
 }

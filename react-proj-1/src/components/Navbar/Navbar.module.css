@@ -1,15 +1,17 @@
 .nav{
     grid-area: n;
-    background-color: #c5a039;
+    background-color: #222225;
     padding: 20px;
   }
   .item a{
-    color: white;
+    color: #6a6b6d;
+    font-weight: 500;
+    font-size: 18px;
     text-decoration: none;
   }
 
   .item a.active{
-    color: red;
+    color: rgb(221, 60, 60);
   }
   .friendsContainer{
     display: grid;
@@ -18,4 +20,7 @@
   }
   .frendsTitle{
     margin-top: 50px;
+  }
+  .frendsContent{
+    color: #6a6b6d;
   }

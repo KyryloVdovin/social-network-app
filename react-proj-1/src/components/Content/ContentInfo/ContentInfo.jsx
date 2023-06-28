@@ -67,11 +67,12 @@ const ContentInfo = React.memo(props => {
     return (
         <div>
             <div className={s.profileDataPhoto}>
+
                 <div className={s.profilePhotoContainer}>
                     <img className={s.photo} src={props.profile.photos?.large || photo} />
-                    <div>
-                        {props.isOwner && <input type='file' onChange={onMainPhotoSelected}></input>}
-                    </div>
+                    {props.isOwner && <div>
+                        <input type='file' onChange={onMainPhotoSelected}></input>
+                    </div>}
                 </div>
                 <div className={s.profileDataContainer}>
                     <ContentStatusWithHooks status={props.status} updateStatusThunk={props.updateStatusThunk} />

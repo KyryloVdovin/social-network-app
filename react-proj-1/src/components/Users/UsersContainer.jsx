@@ -1,10 +1,9 @@
 import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleIsFollowingInProgress, getUsersThunkCreator, switchPageThunkCreator, FollowThunkCreator, UnFollowThunkCreator } from "../redux/usersReducer";
 import { connect } from 'react-redux';
 import React from 'react';
-import axios from 'axios';
 import Users from './Users'
 import PreloaderComponent from '../Preloader/preloader';
-import { usersAPI } from "../../api/api";
+import "./users-container.css";
 import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getIsFollowingInProgress } from "../redux/users-selectors";
 
 class UsersAPIComponent extends React.Component {
@@ -17,30 +16,22 @@ class UsersAPIComponent extends React.Component {
     }
 
     render() {
-        return (<>
-            {
-                this.props.isFetching
-                    ? <PreloaderComponent />
-                    : <Users
-                        usersData={this.props}
-                        onPageChanged={this.onPageChanged}
-                    />
-            }
+        return (
+            <div className="users-container">
+                {
+                    this.props.isFetching
+                        ? <PreloaderComponent />
+                        : <Users
+                            usersData={this.props}
+                            onPageChanged={this.onPageChanged}
+                            currentPage={this.props.currentPage}
+                        />
+                }
 
-        </>);
+            </div>);
     }
 }
 
-// let mapStatetoProps = (state) => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         isFollowingInProgress: state.usersPage.isFollowingInProgress
-//     }
-// }
 let mapStatetoProps = (state) => {
     return {
         users: getUsers(state),

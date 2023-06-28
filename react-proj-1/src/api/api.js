@@ -70,16 +70,6 @@ export const authAPI = {
             return response.data;
         });
     },
-    // login(email, password, rememberMe = false) {
-    //     return instance.post(`auth/login`, { email, password, rememberMe }).then(response => {
-    //         return response;
-    //     });
-    // },
-    // logout() {
-    //     return instance.delete(`auth/login`).then(response => {
-    //         return response.data;
-    //     });
-    // },
     login(email, password, rememberMe = false, captchaUrl) {
         return instance.post(`auth/login`, { email, password, rememberMe, captchaUrl });
     },

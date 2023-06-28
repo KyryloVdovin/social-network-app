@@ -1,9 +1,6 @@
 import HeaderContainer from './components/Header/HeaderContainer';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-// import ContentContainer from './components/Content/ContentContainer';
-// import DialogContainer from './components/Dialogs/DialogsContainer';
-// import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Login/login';
 import { BrowserRouter, HashRouter, Navigate, Route, Routes, useParams } from "react-router-dom";
 import React, { Component, Suspense } from 'react';
@@ -28,22 +25,7 @@ class App extends Component {
     this.props.initializeApp();
   }
 
-  /*
-  Решение, чтобы не делать редирект в componentDidMount:
-
-Создаем локальный state в ProfileContainer с полем, например, 
-"redirect" с дефолтным значением false, и в componentDidMount(), 
-когда нет userId в url  и пользователь не авторизован, 
-то делаем this.setState({ redirect: true }), а в render()  делаем 
-проверку на this.state.redirect, если равно true, 
-то возвращаем <Redirect to="/login" />, если равно false, возвращаем страницу
-  */
-
   render() {
-    // if (!this.props.initialized) {
-    //   return <Preloader />
-    // }
-
     return (
       <HashRouter>
         <div className="app-wrapper">
@@ -52,7 +34,6 @@ class App extends Component {
           <div className='app-wrapper-content'>
             <Suspense fallback={<Preloader />}>
               <Routes>
-                {/* <Route exact path='/' element={<ContentContainer />} /> */}
                 <Route exact path='/' element={<Navigate to="/profile" />} />
                 <Route path="/Dialogs" element={<DialogContainer />} />
                 <Route path='/profile/:userId' element={<ContentContainer />} />
@@ -63,7 +44,6 @@ class App extends Component {
                 <Route path="*" element={<div>404 NOT FOUND</div>} />
               </Routes>
             </Suspense>
-
           </div>
         </div>
       </HashRouter>

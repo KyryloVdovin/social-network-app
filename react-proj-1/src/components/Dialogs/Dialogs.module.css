@@ -1,25 +1,54 @@
-.dialogs{
+.dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
+    background-color: #333335;
+    margin-top: 20px;
 }
-.dialogsItems{
-    padding: 10px;
-}
-.messages{
+
+.dialogsItems {
     padding: 10px;
 }
 
-.dialog a{
-    color: gold;
+.messages {
+    padding: 10px;
+}
+.messageElements {
+    padding: 10px;
+    overflow-y: auto;
+    height: 300px;
+}
+
+.message {
+    margin-bottom: 5px;
+    color: #d9dad1;
+}
+
+.dialog a {
+    color: rgb(237, 211, 66);
     padding-left: 5px;
     display: inline-block;
+    text-decoration: none;
 }
-.dialogsItems .active{
+
+.dialogsItems .active {
     color: gold;
     margin-bottom: 10px;
 }
-.dialog img{
+
+.dialog img {
     height: 30px;
     width: 30px;
     border-radius: 50%;
+}
+
+.dialog {
+    display: flex;
+    gap: 5px;
+}
+
+.dialog div {
+    line-height: 30px;
+}
+.messageInputFieldConatiner{
+    padding-left: 10px;
 }

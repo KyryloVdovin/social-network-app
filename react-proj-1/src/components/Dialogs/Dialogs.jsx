@@ -12,15 +12,6 @@ const Dialogs = (props) => {
     let messageElements = dialogsPage.messages.map(message => <Message message={message.message} key={message.id} />);
     let newMessageText = dialogsPage.newMessageText;
 
-    // let onSendMessageClick = () => {
-    //     props.sendMessage();
-    // }
-
-    // let onMessageTextChange = (e) => {
-    //     let newMessageText = e.target.value;
-
-    //     // props.updateNewMessageText(newMessageText);
-    // }
     let addNewMessage = (value) => {
         props.sendMessage(value.newMessageBody);
     }
@@ -33,20 +24,9 @@ const Dialogs = (props) => {
                 {dialogsElements}
             </div>
             <div className={s.messages}>
-                <div>{messageElements}</div>
-                <AddMessageReduxForm onSubmit={addNewMessage} />
-                {/* <div>
-                    <div>
-                        <textarea value={newMessageText}
-                            placeholder="Enter your message"
-                            onChange={onMessageTextChange}>
-                        </textarea>
-                    </div>
-                    <div>
-                        <button onClick={onSendMessageClick}>Send</button>
-                    </div>
-                </div> */}
+                <div className={s.messageElements}>{messageElements}</div>
             </div>
+            <AddMessageReduxForm onSubmit={addNewMessage} />
         </div>
     );
 }
@@ -57,7 +37,9 @@ const DialogItem = (props) => {
     return (
         <div className={s.dialog + " " + s.active}>
             <img src={`${props.avatarURL}`} alt="" />
-            <NavLink to={path}>{props.name}</NavLink>
+            <div>
+                <NavLink to={path}>{props.name}</NavLink>
+            </div>
         </div>
     );
 }
@@ -75,11 +57,13 @@ const maxLength50 = maxLengthCreator(50);
 const AddMessageForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field component={Textarea} validate={[requiredField, maxLength50]} name="newMessageBody" placeholder="Enter your message" />
-            </div>
-            <div>
-                <button>Send</button>
+            <div className={s.messageInputFieldConatiner}>
+                <div>
+                    <Field component={Textarea} validate={[requiredField, maxLength50]} name="newMessageBody" placeholder="Enter your message" />
+                </div>
+                <div>
+                    <button>Send</button>
+                </div>
             </div>
         </form>
     )
